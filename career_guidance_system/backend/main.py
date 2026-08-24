@@ -1,13 +1,24 @@
+"""
+AI Career Guidance & Counseling Lead Engine - FastAPI backend.
+
+Flow (Section 12):
+  Student submits questionnaire -> AI analyzes profile -> AI generates career,
+  skill, degree & university recommendations -> Final report assembled ->
+  System checks counseling intent -> If qualified, lead saved -> Report + lead
+  status returned to the student.
+
+Run with:
+    uvicorn main:app --reload --port 8000
+"""
 from __future__ import annotations
 
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 
 import ai_service
 import prompts
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
 from leads import classify_lead, is_complete, is_qualified_lead, save_lead
 from models import (
     ActionPlan,
@@ -108,7 +119,7 @@ def analyze(request: AnalyzeRequest):
     qualified = is_qualified_lead(profile)
 
     if qualified:
-        complete, _reason = is_complete(profile)
+        complete, reason = is_complete(profile)
         if complete:
             top_career = report.recommended_career_paths[0].title if report.recommended_career_paths else None
             top_degree = (
@@ -137,14 +148,7 @@ def analyze(request: AnalyzeRequest):
     return AnalyzeResponse(report=report, is_lead=qualified, lead_type=lead_type)
 
 
-# Serve the static frontend (index.html, style.css, script.js).
-# Mount static files under /static and serve index.html at root to avoid
-# StaticFiles intercepting API requests (which can cause 405 for non-GET methods).
+# Serve the static frontend (index.html, style.css, script.js) at the root.
 frontend_dir = Path(__file__).parent.parent / "frontend"
-index_file = frontend_dir / "index.html"
 if frontend_dir.exists():
-    app.mount("/static", StaticFiles(directory=str(frontend_dir)), name="static")
-
-    @app.get("/")
-    def serve_index():
-        return FileResponse(str(index_file))
+    app.mount("/", StaticFiles(directory=str(frontend_dir), html=True), name="frontend")

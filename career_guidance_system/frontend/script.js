@@ -2,20 +2,7 @@
 // Wayfind — questionnaire logic
 // ---------------------------------------------------------------------------
 
-// Use a same-origin (relative) API base so the frontend works when served
-// directly by the backend. If the page is opened from the file system
-// (file://), default to the local backend at http://localhost:8000 so
-// fetch requests still reach the API during local development.
-const API_BASE = (function () {
-  try {
-    if (window && window.location && window.location.protocol === "file:") {
-      return "http://localhost:8000";
-    }
-  } catch (e) {
-    // ignore and fall back to same-origin
-  }
-  return "";
-})();
+const API_BASE = ""; // same-origin; change to e.g. "http://localhost:8000" if serving frontend separately
 
 const state = {
   step: 0,
