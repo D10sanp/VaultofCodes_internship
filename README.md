@@ -11,8 +11,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge\&logo=fastapi\&logoColor=white)
 ![AI](https://img.shields.io/badge/AI-Prompt%20Engineering-8A2BE2?style=for-the-badge)
 ![Internship](https://img.shields.io/badge/VaultOfCodes-Internship-orange?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Completed%2FIn%20Progress-success?style=for-the-badge)
-
+![Status](https://img.shields.io/badge/Status-In%20Progress-yellow?style=for-the-badge)
 </p>
 
 ---
