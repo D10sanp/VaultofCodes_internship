@@ -1,0 +1,125 @@
+[
+  {
+    "id": "TC01",
+    "category": "Course inquiry",
+    "message": "What ethical hacking courses do you have?",
+    "expected_intent": "course_inquiry",
+    "expect_escalate": false,
+    "expect_links": true
+  },
+  {
+    "id": "TC02",
+    "category": "Training inquiry",
+    "message": "Tell me about your corporate readiness training program",
+    "expected_intent": "training_inquiry",
+    "expect_escalate": false,
+    "expect_links": true
+  },
+  {
+    "id": "TC03",
+    "category": "Internship inquiry",
+    "message": "I want to apply for an internship",
+    "expected_intent": "internship_inquiry",
+    "expect_escalate": false,
+    "expect_links": true
+  },
+  {
+    "id": "TC04",
+    "category": "Certificate issue",
+    "message": "My certificate is not showing in my dashboard",
+    "expected_intent": "certificate_query",
+    "expect_escalate": true,
+    "expect_links": false,
+    "note": "Account-specific status check -> escalate rather than guess (bot cannot see the student's account)."
+  },
+  {
+    "id": "TC05",
+    "category": "Certificate correction (should escalate)",
+    "message": "My certificate has the wrong name on it",
+    "expected_intent": "certificate_query",
+    "expect_escalate": true,
+    "expect_links": false
+  },
+  {
+    "id": "TC06",
+    "category": "Offer letter issue",
+    "message": "I have not received my offer letter",
+    "expected_intent": "offer_letter_query",
+    "expect_escalate": true,
+    "expect_links": false
+  },
+  {
+    "id": "TC07",
+    "category": "Certificate verification",
+    "message": "Where can I verify my certificate?",
+    "expected_intent": "certificate_verification",
+    "expect_escalate": false,
+    "expect_links": true
+  },
+  {
+    "id": "TC08",
+    "category": "Website navigation",
+    "message": "Where can I find free courses?",
+    "expected_intent": "website_navigation",
+    "expect_escalate": false,
+    "expect_links": true
+  },
+  {
+    "id": "TC09",
+    "category": "Payment question (should escalate)",
+    "message": "I paid but haven't received access to my course",
+    "expected_intent": "payment_query",
+    "expect_escalate": true,
+    "expect_links": false
+  },
+  {
+    "id": "TC10",
+    "category": "Technical issue",
+    "message": "The website is not working and giving me an error",
+    "expected_intent": "technical_support",
+    "expect_escalate": true,
+    "expect_links": false
+  },
+  {
+    "id": "TC11",
+    "category": "Random / general question",
+    "message": "Hi there, what can you help me with?",
+    "expected_intent": "general_query",
+    "expect_escalate": false,
+    "expect_links": false
+  },
+  {
+    "id": "TC12",
+    "category": "Unclear / out-of-scope question",
+    "message": "What's the weather like today?",
+    "expected_intent": "unknown",
+    "expect_escalate": false,
+    "expect_links": false
+  },
+  {
+    "id": "TC13",
+    "category": "Human support (explicit)",
+    "message": "I want to talk to a human agent",
+    "expected_intent": "human_support",
+    "expect_escalate": true,
+    "expect_links": false
+  },
+  {
+    "id": "TC14",
+    "category": "Course inquiry (specific course)",
+    "message": "Tell me about your Python course",
+    "expected_intent": "course_inquiry",
+    "expect_escalate": false,
+    "expect_links": true
+  },
+  {
+    "id": "TC15",
+    "category": "Conversation memory (context follow-up)",
+    "message": "What's its duration?",
+    "expected_intent": "course_inquiry",
+    "expect_escalate": false,
+    "expect_links": true,
+    "requires_prior": "TC14",
+    "note": "Should resolve 'its' to Python course using session memory, without re-asking."
+  }
+]
