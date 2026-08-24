@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wayfind — Find your career path</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Waypoint rail: encodes actual progress through the assessment -->
+  <aside class="rail" aria-hidden="false">
+    <div class="rail-brand">
+      <span class="rail-mark">✺</span>
+      <span class="rail-name">Wayfind</span>
+    </div>
+    <ol class="waypoints" id="waypoints">
+      <li data-step="0"><span class="wp-dot"></span><span class="wp-label">About you</span></li>
+      <li data-step="1"><span class="wp-dot"></span><span class="wp-label">Education</span></li>
+      <li data-step="2"><span class="wp-dot"></span><span class="wp-label">Skills & interests</span></li>
+      <li data-step="3"><span class="wp-dot"></span><span class="wp-label">Goals</span></li>
+      <li data-step="4"><span class="wp-dot"></span><span class="wp-label">Preferences</span></li>
+      <li data-step="5"><span class="wp-dot"></span><span class="wp-label">Degree plans</span></li>
+      <li data-step="6"><span class="wp-dot"></span><span class="wp-label">Review</span></li>
+    </ol>
+    <p class="rail-note">Takes about 3 minutes. No wrong answers.</p>
+  </aside>
+
+  <main class="stage">
+
+    <form id="quiz" novalidate>
+
+      <!-- Step 0: About you -->
+      <section class="step" data-step="0">
+        <h1>Let's map your path.</h1>
+        <p class="lede">A few quick questions about you, your studies, and where you want to go — then we'll put together a career plan built specifically for you.</p>
+        <div class="field">
+          <label for="name">What should we call you?</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 1: Education -->
+      <section class="step" data-step="1" hidden>
+        <h1>Where are you in your studies?</h1>
+        <div class="field">
+          <label for="current_education">Current education stage</label>
+          <select id="current_education" name="current_education" required>
+            <option value="" disabled selected>Choose one</option>
+            <option>High School</option>
+            <option>Undergraduate</option>
+            <option>Postgraduate</option>
+            <option>Working Professional</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div id="college-fields" hidden>
+          <div class="field-row">
+            <div class="field">
+              <label for="degree_course">Degree / course</label>
+              <input type="text" id="degree_course" name="degree_course" placeholder="e.g. B.Tech CSE">
+            </div>
+            <div class="field">
+              <label for="current_year">Current year / semester</label>
+              <input type="text" id="current_year" name="current_year" placeholder="e.g. 3rd year">
+            </div>
+          </div>
+          <div class="field">
+            <label for="college">College / university</label>
+            <input type="text" id="college" name="college" placeholder="Your institution">
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2: Skills & interests -->
+      <section class="step" data-step="2" hidden>
+        <h1>What are you good at — and drawn to?</h1>
+        <p class="lede">Type something and press Enter to add it as a tag.</p>
+        <div class="field">
+          <label for="skills_input">Skills you already have</label>
+          <div class="tag-input" data-target="skills">
+            <div class="tags" id="skills_tags"></div>
+            <input type="text" id="skills_input" placeholder="e.g. Python, Public speaking, Excel">
+          </div>
+        </div>
+        <div class="field">
+          <label for="interests_input">Things you're interested in</label>
+          <div class="tag-input" data-target="interests">
+            <div class="tags" id="interests_tags"></div>
+            <input type="text" id="interests_input" placeholder="e.g. Design, Healthcare, AI">
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 3: Goals -->
+      <section class="step" data-step="3" hidden>
+        <h1>What are you working toward?</h1>
+        <div class="field">
+          <label for="career_goals">Describe your career goal in your own words</label>
+          <textarea id="career_goals" name="career_goals" rows="3" placeholder="e.g. I want to become a data analyst and eventually lead a data team" required></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="preferred_career_field">Preferred career field <span class="opt">(optional)</span></label>
+            <input type="text" id="preferred_career_field" name="preferred_career_field" placeholder="e.g. Data Science">
+          </div>
+          <div class="field">
+            <label for="current_experience">Current experience <span class="opt">(optional)</span></label>
+            <input type="text" id="current_experience" name="current_experience" placeholder="Internships, projects, or 'None yet'">
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 4: Preferences -->
+      <section class="step" data-step="4" hidden>
+        <h1>Any preferences we should factor in?</h1>
+        <div class="field-row">
+          <div class="field">
+            <label for="preferred_location">Preferred location <span class="opt">(optional)</span></label>
+            <input type="text" id="preferred_location" name="preferred_location" placeholder="City, state, or 'Anywhere'">
+          </div>
+          <div class="field">
+            <label for="budget_preference">Budget for higher education <span class="opt">(optional)</span></label>
+            <input type="text" id="budget_preference" name="budget_preference" placeholder="e.g. Under ₹5L, flexible">
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 5: Degree plans (lead qualification) -->
+      <section class="step" data-step="5" hidden>
+        <h1>How are you thinking about your next degree?</h1>
+        <div class="field">
+          <div class="choice-grid" id="degree_mode_group" data-name="degree_mode">
+            <button type="button" class="choice" data-value="Online Degree">Online Degree</button>
+            <button type="button" class="choice" data-value="Offline/Regular Degree">Offline / Regular Degree</button>
+            <button type="button" class="choice" data-value="Hybrid">Hybrid</button>
+            <button type="button" class="choice" data-value="Distance Learning">Distance Learning</button>
+            <button type="button" class="choice" data-value="Not Sure Yet">Not sure yet</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Would you like help choosing the right degree, university, or specialization?</label>
+          <div class="choice-grid" id="counseling_group" data-name="counseling_interest">
+            <button type="button" class="choice" data-value="Yes, I want counseling">Yes, I want counseling</button>
+            <button type="button" class="choice" data-value="Yes, I want more information">Yes, send me more info</button>
+            <button type="button" class="choice" data-value="Maybe, I'm exploring options">Maybe, I'm exploring</button>
+            <button type="button" class="choice" data-value="No, I just want career guidance">No, just career guidance</button>
+          </div>
+        </div>
+        <div class="field" id="specialization-field" hidden>
+          <label for="preferred_specialization">Any specialization in mind? <span class="opt">(optional)</span></label>
+          <input type="text" id="preferred_specialization" name="preferred_specialization" placeholder="e.g. Data Science, UI/UX">
+        </div>
+      </section>
+
+      <!-- Step 6: Review -->
+      <section class="step" data-step="6" hidden>
+        <h1>Ready when you are.</h1>
+        <p class="lede">We'll analyze your profile and generate a personalized career report — career paths, skills to build, degree options, and a step-by-step plan.</p>
+        <div class="review-card" id="review-card"></div>
+      </section>
+
+    </form>
+
+    <nav class="stepnav">
+      <button type="button" id="btn-back" class="btn ghost">Back</button>
+      <button type="button" id="btn-next" class="btn primary">Continue</button>
+      <button type="button" id="btn-submit" class="btn primary" hidden>Generate my report</button>
+    </nav>
+
+    <!-- Loading state -->
+    <div id="loading" class="loading" hidden>
+      <div class="compass"></div>
+      <p>Charting your path...</p>
+    </div>
+
+    <!-- Results -->
+    <section id="results" class="results" hidden></section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

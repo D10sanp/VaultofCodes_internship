@@ -1,0 +1,2 @@
+name,phone_number,email,current_education,current_course_degree,college,career_interest,preferred_degree_mode,counseling_required,preferred_specialization,ai_recommended_career,ai_recommended_degree,lead_type,date_time,lead_source
+Test,+100,t@example.com,Undergraduate,BSc,Test Uni,AI,Online Degree,"No, just career guidance",,AI,B.Sc/B.Tech related to AI,Online Degree Lead,2026-08-22T11:53:04.035034,Website - AI Career Guidance System
